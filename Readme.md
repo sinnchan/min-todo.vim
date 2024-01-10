@@ -8,15 +8,31 @@
 
 タスクの作成(imap でショートカット登録しています)
 
-![createTask](./images/create_task.gif)
+> - [ ] hoge
 
 タスクの終了・未了状態の切り替え
 
-![toggleTask](./images/toggle_task.gif)
+> - [ ] hoge
+
+⬇️⬇️⬇️
+
+> - [x] `yyyy-MM-dd hh:mm` hoge
 
 処理済みタスクのアーカイブ
 
-![createTask](./images/archive_tasks.gif)
+> ## todo
+> - [x] `yyyy-MM-dd hh:mm` hoge
+> - [ ] piyo
+> 
+> ## archives
+
+⬇️⬇️⬇️
+
+> ## todo
+> - [ ] piyo
+> 
+> ## archives
+> - [x] `yyyy-MM-dd hh:mm` hoge
 
 ## 使用方法
 
