@@ -22,27 +22,15 @@ endfunction
 function! mintodo#DoneTask()
   " Make a task done status
   let row = getline('.')
-  let replaced = substitute(row, '\[ \]', '\[x\]', 'g')
+  let replaced = substitute(row, '\[ \] ', '\[x\] '.strftime('`%Y-%m-%d %H:%M`').' ', 'g')
   call setline('.', replaced)
-  " Append timestamp
-  let nowPos = getpos('.')
-  let now = '@'. strftime('%Y-%m-%d %H:%M:%S')
-  let col = col('$')
-  call cursor('.', col)
-  execute ':normal a' . now
-  " Back to the org position
-  call setpos('.', nowPos)
 endfunction
 
 function! mintodo#UndoTask()
   " Make a task uncheck status
   let row = getline('.')
-  let replaced = substitute(row, '\[x\]', '\[ \]', 'g')
+  let replaced = substitute(row, '\[x\] `\d\{4\}-\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}` ', '\[ \] ', 'g')
   call setline('.', replaced)
-  " Delete timestamp
-  let row = getline('.')
-  let deleted = substitute(row, '@\d\{4\}-\d\{2\}-\d\{2\} \d\{2\}:\d\{2\}:\d\{2\}.*$', '', 'g')
-  call setline('.', deleted)
 endfunction
 
 function! mintodo#CreateTask()
