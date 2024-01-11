@@ -43,24 +43,26 @@ function! mintodo#CreateTask()
 endfunction
 
 function! mintodo#ArchiveTasks()
-  " Archive Done Tasks
-  let last = line("$")
   let delList = []
   let i = 1
-  while i < last
-    let row = getline(i)
-    let isTarget = mintodo#IsDone(row)
+  let endLineNum = line("$")
+  while i < endLineNum
     " copy if task is done
-    if isTarget == 1
-        call append(line("$"), row)
+    let currentLine = getline(i)
+    if mintodo#IsDone(currentLine) == 1
+        call append(endLineNum, currentLine)
         let delList = insert(delList, i, 0)
     endif
     let i = i + 1
-    let nowLast = line("$")
   endwhile
   " delete lines
   for n in delList
     execute n . "delete" |
   endfor
+  " sort line
+  let startLineNum = line("$") - len(delList)
+  let lines = getline(startLineNum, endLineNum)
+  call reverse(sort(lines))
+  call setline(startLineNum, lines)
 endfunction
 
